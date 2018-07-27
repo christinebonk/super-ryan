@@ -3,6 +3,8 @@ var express = require("express");
 var app = express();
 
 function routes(app) {
+
+	//page routes
 	app.get("/", function(req, res){
 		res.render("index");
 	});
