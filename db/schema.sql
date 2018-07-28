@@ -1,4 +1,3 @@
-
 DROP DATABASE IF EXISTS super_ryan;
 
 CREATE DATABASE super_ryan;

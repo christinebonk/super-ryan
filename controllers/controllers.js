@@ -16,6 +16,10 @@ function routes(app) {
 	app.get("/game", function(req, res) {
 		res.render("game");
 	});
+
+	//create high score api route
+
+	//create players api route
 };
 
 module.exports = routes;
