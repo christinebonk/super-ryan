@@ -5,7 +5,6 @@ var path = require("path");
 var routes = require("./controllers/controllers.js");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-//phaser = require('phaser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
