@@ -2,7 +2,7 @@ var models = require("./../models/superryan.js");
 
 function routes(app) {
 	app.get("/", function(req, res){
-		res.render("index.html");
+		res.render("index");
 	});
 
 	app.get("/highscore", function(req, res) {
@@ -17,9 +17,13 @@ function routes(app) {
 		res.render("game");
 	});
 
-	//create high score api route
+	//pull high score api route - get the top ten high scores
+	
 
 	//create players api route
+
+
+	//create update player score api
 };
 
 module.exports = routes;
