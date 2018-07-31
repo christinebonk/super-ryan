@@ -12,6 +12,7 @@ var config = {
 		}
 	},
 	scene: {
+		TitleScene: TitleScene,
 		key: 'main',
 		preload: preload,
 		create: create,
@@ -20,6 +21,43 @@ var config = {
 }
 
 var game = new Phaser.Game(config);
+
+
+
+var TitleScene = new Phaser.Class({
+	Extends: Phaser.Scene,
+	initialize:
+
+	function sceneStart (){
+		Phaser.Scene.call(this, {key:'sceneStart'})
+	},
+
+	preload: function (){
+
+		console.log("hope it works");
+
+		this.load.image('background', '/assets/images/pixelCity.png');
+
+
+	},
+
+	create: function(){
+
+		console.log('still hope it works');
+		this.add.image(400,300,'background');
+	}
+});
+
+this.scene.start(TitleScene);
+
+
+
+
+
+
+
+
+
 
 var map;
 var score = 0;
