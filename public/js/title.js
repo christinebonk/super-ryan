@@ -8,8 +8,8 @@ var config = {
       
   }
 };
-var shift;
- var game = new Phaser.Game(config);
+
+ 
 function preload() {
     this.load.image('pixCity', 'assets/images/pixelCity.png');
 }
@@ -24,5 +24,4 @@ function update(){
     this.background1.tilePosition.x += 2;
 
 }
-
 
