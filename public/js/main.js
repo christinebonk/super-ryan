@@ -20,7 +20,6 @@ var config = {
 }
 
 var game = new Phaser.Game(config);
-
 var map;
 var score = 0;
 
