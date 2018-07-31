@@ -17,7 +17,7 @@ routes(app);
 
 app.listen(process.env.PORT || port, function(){
 	console.log("Listening on PORT " + port);
-})
+});
 
 
 
