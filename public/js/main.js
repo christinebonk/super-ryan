@@ -20,14 +20,14 @@ var config = {
 }
 
 var game = new Phaser.Game(config);
-var map;
+var cursors;
 var score = 0;
 
 function preload () {
 	this.load.tilemapTiledJSON('map', '../assets/map.json');
 	this.load.spritesheet('tiles', 'assets/tiles.png', {frameWidth: 70, frameHeight: 70});
 	this.load.image('can', '../assets/can.png');
-//	this.load.atlas('player', '../assets/player.json');
+    this.load.atlas('player', '../assets/player.png',  '../assets/player.json');
 }
 
 function create() {
@@ -40,13 +40,34 @@ function create() {
 	groundLayer.setCollisionByExclusion([-1]);
 
 	sweetGingerAleBaby = map.addTilesetImage('can');
-
+	
 	gingerAleLayer = map.createDynamicLayer('Ginger Ale', sweetGingerAleBaby);
+	//create player 
+	player = this.physics.add.sprite(200, 200, 'player');
+	
+	player.setBounce(0.2);
+	//cant leave the map
+	player.setCollideWorldBounds(true);
+	//stops the guy from falling
+	this.physics.add.collider(groundLayer, player);
 
-}
+	cursors = this.input.keyboard.createCursorKeys();
+
+	// this.animations.create({
+	// 	key: 'walk',
+	// 	frames: this.animations.generateFrameNames('player')
+	// });
+	}
 
 function update(time, delta) {
-
+	if (cursors.left.isDown)
+	{
+		player.body.setVelocityX(-200);
+		player.flipX = true;
+	}else if (cursors.right.isDown){
+		player.body.setVelocityX(200);
+		player.flipX = false;
+	}
 }
 
 function getGinger(sprite, tile) {
