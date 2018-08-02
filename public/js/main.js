@@ -42,12 +42,12 @@ function create() {
 
 	sweetGingerAleBaby = map.addTilesetImage('can');
 	
-	gingerAleLayer = map.createDynamicLayer('Ginger Ale', sweetGingerAleBaby);
+	gingerAleLayer = map.createDynamicLayer('Ginger Ale', sweetGingerAleBaby, 0, 0);
 
 	gingerAleLayer.setTileIndexCallback(17, getGingerAle, this);
 	//create player 
 	player = this.physics.add.sprite(200, 200, 'player');
-	
+
 	player.setBounce(0.2);
 	//cant leave the map
 	player.setCollideWorldBounds(true);
