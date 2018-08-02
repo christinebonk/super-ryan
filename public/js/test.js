@@ -27,6 +27,7 @@ function preload () {
 	this.load.tilemapTiledJSON('map', '../assets/map.json');
 	this.load.spritesheet('tiles', 'assets/tiles.png', {frameWidth: 70, frameHeight: 70});
 	this.load.image('can', '../assets/can.png');
+	this.load.image('cat', '../assets/cat.png');
     this.load.atlas('player', '../assets/player.png',  '../assets/player.json');
 }
 
@@ -42,12 +43,12 @@ function create() {
 
 	sweetGingerAleBaby = map.addTilesetImage('can');
 	
-	gingerAleLayer = map.createDynamicLayer('Ginger Ale', sweetGingerAleBaby, 0, 0);
+	gingerAleLayer = map.createDynamicLayer('Ginger Ale', sweetGingerAleBaby);
 
 	gingerAleLayer.setTileIndexCallback(17, getGingerAle, this);
 	//create player 
 	player = this.physics.add.sprite(200, 200, 'player');
-
+	
 	player.setBounce(0.2);
 	//cant leave the map
 	player.setCollideWorldBounds(true);
@@ -66,8 +67,6 @@ function create() {
 	this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 	this.cameras.main.startFollow(player);
 
-	this.physics.world.bounds.width = groundLayer.width;
-    this.physics.world.bounds.height = groundLayer.height;
 
 	//player walking animations
 	this.anims.create({
