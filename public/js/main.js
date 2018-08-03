@@ -21,6 +21,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 var cursors;
+var text;
 var score = 0;
 
 function preload () {
@@ -32,19 +33,20 @@ function preload () {
 
 function create() {
 
+
 	map = this.make.tilemap({key: 'map'});
 
 	groundTiles = map.addTilesetImage('tiles');
 
-	groundLayer = map.createDynamicLayer('World', groundTiles) ;
+	groundLayer = map.createDynamicLayer('World', groundTiles);
 
 	groundLayer.setCollisionByExclusion([-1]);
 
-	sweetGingerAleBaby = map.addTilesetImage('can');
+	gingerTile = map.addTilesetImage('can');
 	
-	gingerAleLayer = map.createDynamicLayer('Ginger Ale', sweetGingerAleBaby, 0, 0);
+	gingerAleLayer = map.createDynamicLayer('Ginger Ale', gingerTile);
 
-	gingerAleLayer.setTileIndexCallback(17, getGingerAle, this);
+	gingerAleLayer.setTileIndexCallback(99, getGingerAle, this);
 	//create player 
 	player = this.physics.add.sprite(200, 200, 'player');
 
@@ -82,6 +84,15 @@ function create() {
 		frames: [{key: player, frame: 'p1_stand'}],
 		frameRate: 10
 	})
+
+	this.cameras.main.setBackgroundColor('#9bf6ff');
+
+	text = this.add.text(20, 20, '0', {
+        fontSize: '20px',
+        fill: '#000000'
+    });
+    // fix the text to the camera
+    text.setScrollFactor(0);
 	
 }
 
@@ -113,3 +124,4 @@ function getGingerAle(sprite, tile) {
 	text.setText(score);
 	return false
 }
+
