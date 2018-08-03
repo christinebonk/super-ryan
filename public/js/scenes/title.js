@@ -1,12 +1,30 @@
 var startScene = new Phaser.Scene('start');
 
+var bg;
 startScene.preload= function(){
     this.load.image('bg','./assets/images/pixelCity.png');
     this.load.spritesheet('sk8','./assets/images/sk8.png', {frameWidth: 361.8, frameHeight: 362,endFrame:135});
-
+    this.load.image('Title','./assets/images/SuperRyan.png');
 }
 startScene.create= function(){
-    bg = this.add.tileSprite(400,300,800,600,'bg')
+     bg = this.add.tileSprite(400,300,800,600,'bg');
+    title= this.add.image(400,-100,'Title');
+
+var text =this.add.text(10,580,'', {font: '16px Courier. fill: #ffffff'});
+
+text.setText([
+    'Version: ' + game.config.gameVersion
+]);
+
+
+
+var tween = this.tweens.add({
+    targets: title,
+    props:{
+        y: {value:100, duration:1000, ease:'Bounce.easeInOut',delay:7000}
+    }
+})
+
 var config = {
     key:'skate',
     frames: this.anims.generateFrameNumbers('sk8', { start:45, end:64, first:45}),
@@ -14,21 +32,47 @@ var config = {
     
 };
     this.anims.create(config);
-    var sk8 = this.add.sprite(50,430,'sk8');
+    var sk8 = this.add.sprite(-90,430,'sk8');
     sk8.anims.play('skate');
 
+
+
+    var tween = this.tweens.add({
+        targets: sk8,
+        props:{
+            x: {value:'+=800',duration: 3000, ease:'Power2'}
+        },
+        yoyo:true,
+        onComplete: onCompleteHandler,
+        onCompleteParams: [sk8],
+        delay:2000
+    });
+
+ 
     
+    
+}
+
+
+function onCompleteHandler (tween,targets,sk8)
+{
+ 
+   
 }
 
 startScene.update= function(){
-    bg.tilePositionX +=1;
+
+var Tile= bg.tilePositionX+=2;
+
+
     
 
+   
+};
+
+
+
     
-
-
-
-}
 
 
 
@@ -41,7 +85,11 @@ var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    scene: [startScene]
+    scene: [startScene],
+    version: '1.0a'
   };
   
   var game = new Phaser.Game(config);
+
+
+
