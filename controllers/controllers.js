@@ -2,7 +2,7 @@ var models = require("./../models/superryan.js");
 
 function routes(app) {
 	app.get("/", function(req, res){
-		res.render("index.html");
+		res.render("index");
 	});
 
 	app.get("/highscore", function(req, res) {
