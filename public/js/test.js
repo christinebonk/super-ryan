@@ -21,35 +21,34 @@ var config = {
 
 var game = new Phaser.Game(config);
 var cursors;
-var text;
 var score = 0;
 
 function preload () {
 	this.load.tilemapTiledJSON('map', '../assets/map.json');
 	this.load.spritesheet('tiles', 'assets/tiles.png', {frameWidth: 70, frameHeight: 70});
 	this.load.image('can', '../assets/can.png');
+	this.load.image('cat', '../assets/cat.png');
     this.load.atlas('player', '../assets/player.png',  '../assets/player.json');
 }
 
 function create() {
 
-
 	map = this.make.tilemap({key: 'map'});
 
 	groundTiles = map.addTilesetImage('tiles');
 
-	groundLayer = map.createDynamicLayer('World', groundTiles);
+	groundLayer = map.createDynamicLayer('World', groundTiles) ;
 
 	groundLayer.setCollisionByExclusion([-1]);
 
-	gingerTile = map.addTilesetImage('can');
+	sweetGingerAleBaby = map.addTilesetImage('can');
 	
-	gingerAleLayer = map.createDynamicLayer('Ginger Ale', gingerTile);
+	gingerAleLayer = map.createDynamicLayer('Ginger Ale', sweetGingerAleBaby);
 
-	gingerAleLayer.setTileIndexCallback(99, getGingerAle, this);
+	gingerAleLayer.setTileIndexCallback(17, getGingerAle, this);
 	//create player 
 	player = this.physics.add.sprite(200, 200, 'player');
-
+	
 	player.setBounce(0.2);
 	//cant leave the map
 	player.setCollideWorldBounds(true);
@@ -68,8 +67,6 @@ function create() {
 	this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 	this.cameras.main.startFollow(player);
 
-	this.physics.world.bounds.width = groundLayer.width;
-    this.physics.world.bounds.height = groundLayer.height;
 
 	//player walking animations
 	this.anims.create({
@@ -84,15 +81,6 @@ function create() {
 		frames: [{key: player, frame: 'p1_stand'}],
 		frameRate: 10
 	})
-
-	this.cameras.main.setBackgroundColor('#9bf6ff');
-
-	text = this.add.text(20, 20, '0', {
-        fontSize: '20px',
-        fill: '#000000'
-    });
-    // fix the text to the camera
-    text.setScrollFactor(0);
 	
 }
 
@@ -124,4 +112,3 @@ function getGingerAle(sprite, tile) {
 	text.setText(score);
 	return false
 }
-
