@@ -1,4 +1,5 @@
-var models = require("./../models/superryan.js");
+var db = require("./../models/superryan.js");
+var bodyparser = require("body-parser")
 
 function routes(app) {
 	app.get("/", function(req, res){
@@ -21,10 +22,26 @@ function routes(app) {
 	
 
 	//create players api route
+	app.post("/api/player", function(req,res) {
+		 db.create({
+	      name: req.body.name,
+	      character: req.body.character
+	    }).then(function(res) {
+	    });
+	});
 
+	//pull user profiles
+	app.get("/api/player", function(req,res) {
+		db.findAll({}).then(function(result) {
+	      res.json(result);
+	    });
+	});
 
 	//create update player score api
 };
 
 module.exports = routes;
+
+
+
 

@@ -1,12 +1,73 @@
-<h1>Create</h1>
+<main>
+	<h1>Create your Character</h1>
+	<!--Choose if New or Existing-->
+	<div id="login">
+		<h3>Are you a New or Existing Player?</h3>
+		<div class="login-bottom">
+			<a id="new" class="waves-effect waves-light btn">New</a>
+			<a id="existing" class="waves-effect waves-light btn">Existing</a>
+		</div>
+	</div>
+	<!--New Create-->
+	<div id="new-create" class="hide">
+		<h3>What is your name?</h3>
+		<form>
+			<div class="input-field">
+				<label for="name">Name</label>
+				<input type="text" name="name" id="name" required min="3" max="3">
+			</div>
+			<div class="new-create-bottom">
+				<a id="name-submit" class="waves-effect waves-light btn">Next</a>
+			</div>
+		</form>
+	</div>
+	<!--New Select Character-->
+	<div id="new-character" class="hide">
+		<h3>Who would you like to play as?</h3>
+		<div id="new-character-container">
+			<div class="character" data="ryan">
+				<img src="/assets/players/ryan.png">
+				<h4>Ryan</h4>
+			</div>
+			<div class="character" data="andrew">
+				<img src="/assets/players/andrew.png">
+				<h4>Andrew</h4>
+			</div>
+			<div class="character" data="edward">
+				<img src="/assets/players/edward.png">
+				<h4>Edward</h4>
+			</div>
+			<div class="character" data="christine">
+				<img src="/assets/players/christine.png">
+				<h4>Christine</h4>
+			</div>
+		</div>
+	</div>
+	<!--Existing Select Player-->
+	<div id="existing-select" class="hide">
+		<h3>Select your profile</h3>
+		<table>
+			<thead>
+				<th>Name</th>
+				<th>Character</th>
+				<th>High Score</th>
+			</thead>
 
-<!--Create a player screen-->
+			<tbody id="existing-character">
 
-<script type="text/javascript" src="js/phaser.js"></script>
-<script type="text/javascript" src="js/test.js"></script>
+			</tbody>
 
-<!--Ask for user input for name -->
+		</table>
+		
+	</div>
 
-<!--Send name to database (api route)-->
+	<!--Start Game-->
+	<div id="start-game" class="hide">
+		<h3>Welcome <span id="your-name"></span>, are you ready to begin?</h3>
+		<img id="your-picture" src=""><img>
+		<a id="start-button" href="/" class="waves-effect waves-light btn">Next</a>
+	</div>
+</main>
 
-<!--Start game (direct to game.handlebars)-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/create.js"></script>
