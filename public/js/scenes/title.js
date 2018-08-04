@@ -56,7 +56,7 @@ var config = {
     key:'skate',
     frames: this.anims.generateFrameNumbers('sk8', { start:45, end:64, first:45}),
     frameRate: 5,
-    
+   
 };
     this.anims.create(config);
     var sk8 = this.add.sprite(-90,430,'sk8');
@@ -70,6 +70,7 @@ var config = {
             x: {value:'+=800',duration: 3000, ease:'Power2'}
         },
         yoyo:true,
+        
         
         delay:2000
     });
@@ -99,6 +100,10 @@ var Tile= bg.tilePositionX+=2;
 
 
 
+
+
+
+
 var config = {
     type: Phaser.AUTO,
     width: 800,
@@ -115,6 +120,9 @@ var config = {
   };
   
   var game = new Phaser.Game(config);
+
+
+  
 
 
 
