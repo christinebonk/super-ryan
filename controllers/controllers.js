@@ -17,9 +17,13 @@ function routes(app) {
 		res.render("game");
 	});
 
-	//create high score api route
+	//pull high score api route - get the top ten high scores
+	
 
 	//create players api route
+
+
+	//create update player score api
 };
 
 module.exports = routes;
