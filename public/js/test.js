@@ -26,6 +26,8 @@ var score = 0;
 var playerImg;
 var playerJSON;
 var character = sessionStorage.getItem('character');
+var gameTime = 100;
+var gameTimeText;
 
 //set character
 
@@ -125,12 +127,19 @@ function create() {
 
 	this.cameras.main.setBackgroundColor('#9bf6ff');
 
-	text = this.add.text(20, 20, '0', {
+	text = this.add.text(20, 40, '0', {
         fontSize: '20px',
         fill: '#000000'
     });
     // fix the text to the camera
-    text.setScrollFactor(0);
+	text.setScrollFactor(0);
+	
+	gameTimeText = this.add.text(20, 20, '0', {
+		fontSize: '20px',
+		fill: '#000000'
+	});
+
+	gameTimeText.setScrollFactor(0);
 }
 
 
@@ -164,7 +173,20 @@ function update(time, delta) {
 function getGingerAle(sprite, tile) {
 	gingerAleLayer.removeTileAt(tile.x, tile.y);
 	score++;
-	text.setText(score);
+	text.setText("Score: " + score);
 	return false
 }
 
+
+setTimeout(function() {
+	console.log(score);
+	window.location.href = '/highscore';
+}, 101000);
+
+setInterval(function(){
+	if(gameTime <= 1){
+		//store score and make a post request using current character data from create. In order to post to the data base we need crea
+	}
+	gameTime--;
+	gameTimeText.setText("Time Remaining: " + gameTime);
+}, 1000);
