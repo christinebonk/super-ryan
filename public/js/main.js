@@ -85,7 +85,7 @@ function create() {
 		frameRate: 10
 	})
 
-	this.cameras.main.setBackgroundColor('#9bf6ff');
+	this.cameras.main.setBackgroundColor('#ccccff');
 
 	text = this.add.text(20, 20, '0', {
         fontSize: '20px',
