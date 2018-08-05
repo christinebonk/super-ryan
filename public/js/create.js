@@ -16,10 +16,10 @@ $("#existing").on("click", function() {
 		type: "GET",
 	}).then(function(res) {
 		for (i=0;i<res.length;i++) {
-			var newRow = $(`<tr data='${res[i].name}' data-character='${res[i].character}'>`);
-			var newName = $(`<td> ${res[i].name} </td>`);
+			var newRow = $(`<tr data='${res[i].user_name}' data-character='${res[i].character}'>`);
+			var newName = $(`<td> ${res[i].user_name} </td>`);
 			var newCharacter = $(`<td> ${res[i].character} </td>`);
-			var newHS = $(`<td> ${res[i].current_high_score_} </td>`);
+			var newHS = $(`<td> ${res[i].user_score} </td>`);
 			newRow.append(newName);
 			newRow.append(newCharacter);
 			newRow.append(newHS);
@@ -42,13 +42,14 @@ $(".character").on("click", function() {
 	character = $(this).attr("data");
 	sessionStorage.setItem('character', character)
 	$("#new-character").toggleClass("hide");
+	$("#your-name").append(name);
 	$("#start-game").toggleClass("hide");
 })
 
 //start game 
 $("#start-button").on("click", function() {
 	var newCharacter = {
-		name: name,
+		user_name: name,
 		character: character
 	};
 	$.ajax("/api/player", {
@@ -61,10 +62,11 @@ $("#start-button").on("click", function() {
 
 //select character profile
 $("#existing-character").on("click", "tr", function(){
-	var user = $(this).attr("data");
+	var name = $(this).attr("data");
 	var character = $(this).attr("data-character");
 	sessionStorage.setItem('character', character);
 	$("#start-game").toggleClass("hide");
+	$("#your-name").append(name);
 	$("#existing-select").toggleClass("hide");
 })
 

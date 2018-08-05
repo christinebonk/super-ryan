@@ -1,5 +1,6 @@
 var db = require("./../models/superryan.js");
-var bodyparser = require("body-parser")
+var bodyparser = require("body-parser");
+
 
 function routes(app) {
 	app.get("/", function(req, res){
@@ -19,7 +20,13 @@ function routes(app) {
 	});
 
 	//pull high score api route - get the top ten high scores
-	
+	app.get("/api/highscore", function(req,res) {
+		db.findAll({
+			order: [['user_score', 'DESC']]
+		}).then(function(result) {
+			res.json(result);
+		});
+	});
 
 	//create players api route
 	app.post("/api/player", function(req,res) {

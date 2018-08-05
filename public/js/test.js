@@ -57,10 +57,10 @@ function preload () {
 	this.load.spritesheet('tiles', 'assets/tiles.png', {frameWidth: 70, frameHeight: 70});
 	this.load.image('can', '../assets/can.png');
     this.load.atlas('player', playerImg,  playerJSON);
+    this.load.atlas('enemy', '../assets/players/enemy.png', '../assets/players/enemy.json')
 }
 
 function create() {
-
 
 	map = this.make.tilemap({key: 'map'});
 
@@ -75,6 +75,20 @@ function create() {
 	gingerAleLayer = map.createDynamicLayer('Ginger Ale', gingerTile);
 
 	gingerAleLayer.setTileIndexCallback(99, getGingerAle, this);
+	//enemy
+	enemy = this.physics.add.sprite(200, 200, 'enemy');
+	enemy.setCollideWorldBounds(true);
+	enemy.body.setSize(enemy.width, enemy.height-8);
+	this.physics.add.collider(groundLayer, enemy);
+
+	// player walking animations
+	this.anims.create({
+		key: 'slime',
+		frames: this.anims.generateFrameNames('enemy', {prefix: 'slime', start: 1, end: 2, zeroPad: 3}),
+		frameRate: 5,
+		repeat: -1
+	});
+
 	//create player 
 	player = this.physics.add.sprite(200, 200, 'player');
 
@@ -89,10 +103,6 @@ function create() {
 
 	cursors = this.input.keyboard.createCursorKeys();
 
-	// this.animations.create({
-	// 	key: 'walk',
-	// 	frames: this.animations.generateFrameNames('player')
-	// });
 	this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 	this.cameras.main.startFollow(player);
 
@@ -121,11 +131,8 @@ function create() {
     });
     // fix the text to the camera
     text.setScrollFactor(0);
-	
 }
 
-
-	
 
 function update(time, delta) {
 	if (cursors.left.isDown)
@@ -144,6 +151,14 @@ function update(time, delta) {
 	if(cursors.up.isDown){
 		player.body.setVelocityY(-500)
 	}
+
+	//enemies
+	enemy.body.velocity.x = 50;
+	enemy.anims.play('slime', true);
+	if (enemy.body.x > 100)
+	{
+	  enemy.body.velocity.x *= -1;
+	}	
 }
 
 function getGingerAle(sprite, tile) {
