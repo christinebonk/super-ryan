@@ -23,12 +23,40 @@ var game = new Phaser.Game(config);
 var cursors;
 var text;
 var score = 0;
+var playerImg;
+var playerJSON;
+var character = sessionStorage.getItem('character');
+
+//set character
+
+function setCharacter() {
+	console.log(character);
+	if (character === "ryan") {
+		playerImg = '../assets/players/ryan-ani.png';
+		playerJSON = '../assets/players/ryan-ani.json';
+	} else if (character === "andrew") {
+		playerImg = '../assets/players/andrew-ani.png';
+		playerJSON = '../assets/players/andrew-ani.json';
+	} else if (character === "edward") {
+		playerImg = '../assets/players/edward-ani.png';
+		playerJSON = '../assets/players/edward-ani.json';
+	} else if (character === "christine") {
+		playerImg = '../assets/players/christine-ani.png';
+		playerJSON = '../assets/players/christine-ani.json';
+	} else {
+		playerImg = '../assets/players/andrew-ani.png';
+		playerJSON = '../assets/players/andrew-ani.json';
+	}
+}
+
+setCharacter();
+
 
 function preload () {
 	this.load.tilemapTiledJSON('map', '../assets/map.json');
 	this.load.spritesheet('tiles', 'assets/tiles.png', {frameWidth: 70, frameHeight: 70});
 	this.load.image('can', '../assets/can.png');
-    this.load.atlas('player', '../assets/player.png',  '../assets/player.json');
+    this.load.atlas('player', playerImg,  playerJSON);
 }
 
 function create() {
@@ -71,21 +99,21 @@ function create() {
 	this.physics.world.bounds.width = groundLayer.width;
     this.physics.world.bounds.height = groundLayer.height;
 
-	//player walking animations
+	// player walking animations
 	this.anims.create({
 		key: 'walk',
-		frames: this.anims.generateFrameNames('player', {prefix: 'p1_walk', start: 1, end: 11, zeroPad: 2}),
+		frames: this.anims.generateFrameNames('player', {prefix: 'walk', start: 1, end: 3, zeroPad: 3}),
 		frameRate: 10,
 		repeat: -1
 	});
 
 	this.anims.create({
 		key: 'idle',
-		frames: [{key: player, frame: 'p1_stand'}],
+		frames: [{key: 'player', frame: 'idle'}],
 		frameRate: 10
 	})
 
-	this.cameras.main.setBackgroundColor('#ccccff');
+	this.cameras.main.setBackgroundColor('#9bf6ff');
 
 	text = this.add.text(20, 20, '0', {
         fontSize: '20px',
@@ -111,7 +139,7 @@ function update(time, delta) {
 		player.flipX = false;
 	}else{
 		player.body.setVelocityX(0);
-		//player.anims.play('idle', true);
+		player.anims.play('idle', true);
 	}
 	if(cursors.up.isDown){
 		player.body.setVelocityY(-500)
