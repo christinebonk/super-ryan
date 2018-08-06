@@ -54,6 +54,10 @@ canvas {
 	display: none;
 }
 
+#new-create label {
+	color: white;
+}
+
 #new-character{
 	margin: 0 auto;
 }
@@ -70,15 +74,42 @@ canvas {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	padding: 40px;
 }
 
 #new-character-container h4 {
 	text-align: center;
+	font-size: 2rem;
 }
 
-main {
-	width: 60%;
-	margin: 0 auto;
+#create-screen {
+	color: white;
+	width: 800px;
+	height: 600px;
+	justify-content: center;
+	background: #ee6e73;
+	display: flex;
+	border-radius: 5px;
+	border: 5px #2193b0 solid;
+}
+
+#create-screen table {
+	margin: 30px;
+}
+
+#create-screen td {
+	max-width: 50px;
+}
+
+#table-container {
+	width: 800px;
+	height: 400px;
+	position: relative;
+	overflow-y: scroll;
+}
+
+#create-screen h3 {
+	margin-top: 100px;
 }
 
 #new-character img {
@@ -104,4 +135,14 @@ main {
 	background: white;
 	color: black;
 	cursor: pointer;
+}
+
+#your-picture {
+	padding: 50px;
+}
+
+#start-game-bottom {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }

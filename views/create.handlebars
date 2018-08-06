@@ -1,4 +1,4 @@
-<main>
+<main id="create-screen">
 	<!--Choose if New or Existing-->
 	<div id="login">
 		<h3>Are you a New or Existing Player?</h3>
@@ -45,23 +45,26 @@
 	<!--Existing Select Player-->
 	<div id="existing-select" class="hide">
 		<h3>Select your profile</h3>
-		<table>
-			<thead>
-				<th>Name</th>
-				<th>Character</th>
-				<th>High Score</th>
-			</thead>
-			<tbody id="existing-character">
-			</tbody>
-		</table>
-		
+		<div id="table-container">
+			<table>
+				<thead>
+					<th>Name</th>
+					<th>Character</th>
+					<th>High Score</th>
+				</thead>
+				<tbody id="existing-character">
+				</tbody>
+			</table>
+		</div>
 	</div>
 
 	<!--Start Game-->
 	<div id="start-game" class="hide">
 		<h3>Welcome <span id="your-name"></span>, are you ready to begin?</h3>
-		<img id="your-picture" src=""><img>
-		<a id="start-button" href="/game" class="waves-effect waves-light btn">Next</a>
+		<div id="start-game-bottom">
+			<img id="your-picture" src="">
+			<a id="start-button" href="/game" class="waves-effect waves-light btn">Start Game</a>
+		</div>
 	</div>
 </main>
 

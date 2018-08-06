@@ -6,7 +6,8 @@ startScene.preload= function(){
     this.load.image('bg','./assets/images/pixelCity.png');
     this.load.spritesheet('sk8','./assets/images/sk8.png', {frameWidth: 361.8, frameHeight: 362,endFrame:135});
     this.load.image('Title','./assets/images/SuperRyan.png');
-    this.load.image('startbtn','./assets/images/Start.png');
+    this.load.image('startbtn','./assets/images/button.png');
+    this.load.image('hsbtn','./assets/images/highscore.png');
 }
 
 //creation central//
@@ -17,13 +18,22 @@ startScene.create= function(){
 
 //start button//
 startbtn = this.add.sprite(400,300,'startbtn').setInteractive();
-startbtn.on('pointerdown', function() {window.location.href = "/create"}); // Start game on click.
+startbtn.on('pointerdown', function() {window.location.href = "/create"});
+hsbtn = this.add.sprite(400,370,'hsbtn').setInteractive();
+hsbtn.on('pointerdown', function() {window.location.href = "/highscore"});
 
 
 startbtn.alpha = 0;
+hsbtn.alpha = 0;
+
 
 var tween = this.tweens.add({
     targets: startbtn,
+    alpha:{value:1, delay:8000}
+});
+
+var tween = this.tweens.add({
+    targets: hsbtn,
     alpha:{value:1, delay:8000}
 })
 

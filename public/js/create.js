@@ -43,6 +43,7 @@ $(".character").on("click", function() {
 	sessionStorage.setItem('character', character)
 	$("#new-character").toggleClass("hide");
 	$("#your-name").append(name);
+	$("#your-picture").attr("src", `/assets/players/${character}.png`)
 	$("#start-game").toggleClass("hide");
 })
 
@@ -67,6 +68,7 @@ $("#existing-character").on("click", "tr", function(){
 	sessionStorage.setItem('character', character);
 	$("#start-game").toggleClass("hide");
 	$("#your-name").append(name);
+	$("#your-picture").attr("src", `/assets/players/${character}.png`)
 	$("#existing-select").toggleClass("hide");
 })
 

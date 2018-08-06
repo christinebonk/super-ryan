@@ -1,10 +1,10 @@
 //have to fix size of map. you can only see it completely when you zoom out of the page. 
-gameWidth = window.innerWidth - 200;
-gameHeight = window.innerHeight - 150;
+// gameWidth = window.innerWidth - 200;
+// gameHeight = window.innerHeight - 150;
 var config = {
 	type: Phaser.AUTO,
-	width: gameWidth,
-	height: gameHeight,
+	width: 800,
+	height: 600,
 	physics: {
 		default: 'arcade',
 		arcade: {
