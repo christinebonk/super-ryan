@@ -26,15 +26,22 @@ var score = 0;
 var playerImg;
 var playerJSON;
 var character = sessionStorage.getItem('character');
-var gameTime = 70;
+var gameTime = 5;
 var gameTimeText;
 var user = sessionStorage.getItem('name');
+var highScore = sessionStorage.getItem('score');
+
 
 //set character
 if (!user) {
 	user = "SET";
 	console.log(user);
 }
+if(!highScore) {
+	highScore = 0;
+	console.log(highScore);
+}
+
 function setCharacter() {
 	if (character === "ryan") {
 		playerImg = '../assets/players/ryan-ani.png';
@@ -54,6 +61,7 @@ function setCharacter() {
 	}
 }
 setCharacter();
+
 
 //preload
 function preload () {
@@ -166,21 +174,29 @@ function getGingerAle(sprite, tile) {
 //end game functions
 setTimeout(function() {
 
-	window.location.href = '/highscore';
-}, 70500);
+	window.location.href = '/end';
+}, 6000);
 
 setInterval(function(){
 	if(gameTime < 1){
-		var updatedCharacter = {
-			user: user,
-			score: score
+		sessionStorage.setItem('win', false);
+		if(score > highScore) {
+			sessionStorage.setItem('win', true);
+			var updatedCharacter = {
+				user: user,
+				score: score
+			}
+			$.ajax("/api/player", {
+				type: "PUT",
+				data: updatedCharacter
+			}).then(function() {
+				
+			});
+		
 		}
-		$.ajax("/api/player", {
-			type: "PUT",
-			data: updatedCharacter
-		}).then(function() {
-			
-		});
+		sessionStorage.setItem('score', score);
+		sessionStorage.setItem('name', user);
+
 		return
 	}
 	gameTime--;

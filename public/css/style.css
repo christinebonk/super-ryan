@@ -33,16 +33,12 @@ nav {
 	margin-left: 10px;
 }
 
-
-
 /*Title Screen Styles */
 
 canvas {
 	border-radius: 5px;
 	border: 5px #2193b0 solid
 }
-
-
 
 /*Create Page Styles*/
 
@@ -175,4 +171,20 @@ form p {
 	background: #ee6e73;
 	border-radius: 5px;
 	border: 5px #2193b0 solid;
+}
+
+/*End Game*/
+#end-screen {
+	color: white;
+	width: 800px;
+	height: 600px;
+	background: #ee6e73;
+	border-radius: 5px;
+	border: 5px #2193b0 solid;
+	padding: 50px;
+}
+
+#end-screen p {
+	font-size: 2rem;
+	text-align: center;
 }

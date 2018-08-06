@@ -16,7 +16,7 @@ $("#existing").on("click", function() {
 		type: "GET",
 	}).then(function(res) {
 		for (i=0;i<res.length;i++) {
-			var newRow = $(`<tr data='${res[i].user_name}' data-character='${res[i].character}'>`);
+			var newRow = $(`<tr data='${res[i].user_name}' data-character='${res[i].character}' data-score='${res[i].user_score}'>`);
 			var newName = $(`<td> ${res[i].user_name} </td>`);
 			var newCharacter = $(`<td> ${res[i].character} </td>`);
 			var newHS = $(`<td> ${res[i].user_score} </td>`);
@@ -32,13 +32,26 @@ $("#existing").on("click", function() {
 $("#name-submit").on("click", function(event) {
 	event.preventDefault();
 	name = $("#name").val();
-	if (name.length > 3 || name.length < 3) {
-		$("#error-message").text("Your name must be 3 characters long.")
-	} else {
-		$("#new-create").toggleClass("hide");
-		$("#new-character").toggleClass("hide");
-	}
-	
+	$.ajax("/api/player", {
+		type: "GET",
+	}).then(function(res) {
+		var pass1 = true; 
+		var pass2 = true;
+		if (name.length > 3 || name.length < 3) {
+			$("#error-message").text("Your name must be 3 characters long.");
+			pass1 = false;
+		} 
+		for(i=0;i<res.length;i++) {
+			if(name === res[i].user_name) {
+				$("#error-message").text("This user name has been taken.");
+				pass2 = false;
+			} 
+		} 
+		if (pass1 && pass2) {
+			$("#new-create").toggleClass("hide");
+			$("#new-character").toggleClass("hide");
+		}
+	});
 });
 
 //select character
@@ -46,6 +59,7 @@ $(".character").on("click", function() {
 	character = $(this).attr("data");
 	sessionStorage.setItem('character', character);
 	sessionStorage.setItem('name', name);
+	sessionStorage.setItem('score', 0);
 	$("#new-character").toggleClass("hide");
 	$("#your-name").append(name);
 	$("#your-picture").attr("src", `/assets/players/${character}.png`)
@@ -62,10 +76,6 @@ $(".character").on("click", function() {
 	});
 })
 
-//start game 
-$("#start-button").on("click", function() {
-	
-});
 
 //select character profile
 $("#existing-character").on("click", "tr", function(){
@@ -73,6 +83,8 @@ $("#existing-character").on("click", "tr", function(){
 	sessionStorage.setItem('name', name);
 	var character = $(this).attr("data-character");
 	sessionStorage.setItem('character', character);
+	var highScore = $(this).attr("data-score");
+	sessionStorage.setItem('score', highScore);
 	$("#start-game").toggleClass("hide");
 	$("#your-name").append(name);
 	$("#your-picture").attr("src", `/assets/players/${character}.png`)

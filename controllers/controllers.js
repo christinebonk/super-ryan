@@ -7,6 +7,10 @@ function routes(app) {
 		res.render("index");
 	});
 
+	app.get("/end", function(req, res){
+		res.render("end");
+	});
+
 	app.get("/highscore", function(req, res) {
 		res.render("highscore");
 	});
