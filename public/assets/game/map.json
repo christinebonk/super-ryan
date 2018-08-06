@@ -35,7 +35,7 @@
         {
          "columns":14,
          "firstgid":1,
-         "image":"..\/..\/..\/PhaserTest\/source-CLONE\/assets\/tiles.png",
+         "image":"..\/..\/..\/..\/PhaserTest\/source-CLONE\/assets\/tiles.png",
          "imageheight":490,
          "imagewidth":980,
          "margin":0,
@@ -158,7 +158,7 @@
         {
          "columns":1,
          "firstgid":99,
-         "image":"can.png",
+         "image":"..\/can.png",
          "imageheight":70,
          "imagewidth":70,
          "margin":0,
