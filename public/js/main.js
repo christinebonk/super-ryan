@@ -4,7 +4,7 @@
 var config = {
 	type: Phaser.AUTO,
 	width: 800,
-	height: 600,
+	height: 500,
 	physics: {
 		default: 'arcade',
 		arcade: {
@@ -26,7 +26,7 @@ var score = 0;
 var playerImg;
 var playerJSON;
 var character = sessionStorage.getItem('character');
-var gameTime = 10;
+var gameTime = 70;
 var gameTimeText;
 var user = sessionStorage.getItem('name');
 
@@ -142,7 +142,7 @@ function update(time, delta) {
 		player.body.setVelocityX(0);
 		player.anims.play('idle', true);
 	}
-	if(cursors.up.isDown){
+	if(cursors.up.isDown && player.body.onFloor()){
 		player.body.setVelocityY(-500)
 	}
 
@@ -165,8 +165,9 @@ function getGingerAle(sprite, tile) {
 
 //end game functions
 setTimeout(function() {
-	window.location.href = '/highscore'
-}, 11000)
+
+	window.location.href = '/highscore';
+}, 70500);
 
 setInterval(function(){
 	if(gameTime < 1){
