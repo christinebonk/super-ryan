@@ -33,6 +33,8 @@ nav {
 	margin-left: 10px;
 }
 
+
+
 /*Title Screen Styles */
 
 canvas {
@@ -52,6 +54,14 @@ canvas {
 
 .hide {
 	display: none;
+}
+
+form {
+	padding: 20px;
+}
+
+form p {
+	margin: 0;
 }
 
 #new-create label {
@@ -95,6 +105,15 @@ canvas {
 
 #create-screen table {
 	margin: 30px;
+}
+
+.login-bottom {
+	margin: 30px;
+}
+
+#create-screen .btn {
+	font-size: 1.5rem;
+	margin: 10px;
 }
 
 #create-screen td {
@@ -145,4 +164,15 @@ canvas {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+/*High Scores*/
+
+#high-scores-screen {
+	color: white;
+	width: 800px;
+	height: 600px;
+	background: #ee6e73;
+	border-radius: 5px;
+	border: 5px #2193b0 solid;
 }

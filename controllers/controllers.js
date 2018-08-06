@@ -31,7 +31,7 @@ function routes(app) {
 	//create players api route
 	app.post("/api/player", function(req,res) {
 		 db.create({
-	      name: req.body.name,
+	      user_name: req.body.name,
 	      character: req.body.character
 	    }).then(function(res) {
 	    });
@@ -45,6 +45,13 @@ function routes(app) {
 	});
 
 	//create update player score api
+	app.put("/api/player", function(req,res) {
+		 db.update(
+		 {user_score: req.body.score},
+		 {where: {user_name: req.body.user}}
+		 ).then(function(res) {
+	    });
+	});
 };
 
 module.exports = routes;

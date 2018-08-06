@@ -32,25 +32,26 @@ $("#existing").on("click", function() {
 $("#name-submit").on("click", function(event) {
 	event.preventDefault();
 	name = $("#name").val();
-	console.log(name);
-	$("#new-create").toggleClass("hide");
-	$("#new-character").toggleClass("hide");
+	if (name.length > 3 || name.length < 3) {
+		$("#error-message").text("Your name must be 3 characters long.")
+	} else {
+		$("#new-create").toggleClass("hide");
+		$("#new-character").toggleClass("hide");
+	}
+	
 });
 
 //select character
 $(".character").on("click", function() {
 	character = $(this).attr("data");
-	sessionStorage.setItem('character', character)
+	sessionStorage.setItem('character', character);
+	sessionStorage.setItem('name', name);
 	$("#new-character").toggleClass("hide");
 	$("#your-name").append(name);
 	$("#your-picture").attr("src", `/assets/players/${character}.png`)
 	$("#start-game").toggleClass("hide");
-})
-
-//start game 
-$("#start-button").on("click", function() {
 	var newCharacter = {
-		user_name: name,
+		name: name,
 		character: character
 	};
 	$.ajax("/api/player", {
@@ -59,11 +60,17 @@ $("#start-button").on("click", function() {
 	}).then(function() {
 		console.log("added character");
 	});
+})
+
+//start game 
+$("#start-button").on("click", function() {
+	
 });
 
 //select character profile
 $("#existing-character").on("click", "tr", function(){
 	var name = $(this).attr("data");
+	sessionStorage.setItem('name', name);
 	var character = $(this).attr("data-character");
 	sessionStorage.setItem('character', character);
 	$("#start-game").toggleClass("hide");
