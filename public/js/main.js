@@ -26,7 +26,7 @@ var score = 0;
 var playerImg;
 var playerJSON;
 var character = sessionStorage.getItem('character');
-var gameTime = 5;
+var gameTime = 70;
 var gameTimeText;
 var user = sessionStorage.getItem('name');
 var highScore = sessionStorage.getItem('score');
@@ -175,7 +175,7 @@ function getGingerAle(sprite, tile) {
 setTimeout(function() {
 
 	window.location.href = '/end';
-}, 6000);
+}, 75000);
 
 setInterval(function(){
 	if(gameTime < 1){
