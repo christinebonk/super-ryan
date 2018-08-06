@@ -1,36 +1,28 @@
-//have to fix size of map. you can only see it completely when you zoom out of the page. 
-// gameWidth = window.innerWidth - 200;
-var config = {
-	type: Phaser.AUTO,
-	width: 800,
-	height: 600,
-	scene:[startScene,MainGame],
-	version:'1.0a',
-	physics: {
-		default: 'arcade',
-		arcade: {
-			gravity: {y: 500},
-			debug: false	
-		}
-	}
+
+
+
+
+
+var StartGame = new Phaser.Class({
 	
-}
 
-var startScene = new Phaser.Scene('start');
+	Extends: Phaser.Scene,
+	initialize:
+	function StartGame(){
+		Phaser.Scene.call(this, {key:'start'});
+	},
 
-var bg;
 //loads images//
-startScene.preload= function(){
+preload: function(){
     this.load.image('bg','./assets/images/pixelCity.png');
     this.load.spritesheet('sk8','./assets/images/sk8.png', {frameWidth: 361.8, frameHeight: 362,endFrame:135});
     this.load.image('Title','./assets/images/SuperRyan.png');
     this.load.image('startbtn','./assets/images/Start.png');
-}
-function SceneSwap(){
-	this.scene.start(MainGame);
-}
+},
+
+
 //creation central//
-startScene.create= function(){
+create: function(){
      bg = this.add.tileSprite(400,300,800,600,'bg');
     title= this.add.image(400,-100,'Title');
 //start button//
@@ -39,12 +31,12 @@ this.startbtn = this.add.sprite(400,300,'startbtn').setInteractive().on('pointer
 
 
 
-startbtn.alpha = 0;
+this.startbtn.alpha = 0;
 
 
 
 var tween = this.tweens.add({
-    targets: startbtn,
+    targets: this.startbtn,
     alpha:{value:1, delay:8000}
 })
 //Make button change scenes//
@@ -100,54 +92,62 @@ var config = {
         
         delay:2000
     });
-
- 
-    
-    
-}
+},
 
 
-startScene.update= function(){
+update: function(){
 
 var Tile= bg.tilePositionX+=2;
+ 
+},
 
 
-    
+SceneSwap: function(){
+	this.scene.start('maingame');
+}
+});
 
-   
-};
 
-var game = new Phaser.Game(config);
-var MainGame= new Phaser.Scene('main');
+
+
 var cursors;
 var text;
 var score = 0;
 
-MainGame.preload = function () {
+var MainGame = new Phaser.Class({
+
+Extends: Phaser.Scene,
+
+initialize:
+function MainGame(){
+	Phaser.Scene.call(this,{key:'maingame'});
+},
+
+preload: function() {
 	this.load.tilemapTiledJSON('map', '../assets/map.json');
 	this.load.spritesheet('tiles', 'assets/tiles.png', {frameWidth: 70, frameHeight: 70});
 	this.load.image('can', '../assets/can.png');
     this.load.atlas('player', '../assets/player.png',  '../assets/player.json');
-}
+},
 
-MainGame.create= function() {
+create: function() {
 
 
-	map = this.make.tilemap({key: 'map'});
+	var map = this.make.tilemap({key: 'map'});
 
-	groundTiles = map.addTilesetImage('tiles');
+	var groundTiles = map.addTilesetImage('tiles');
 
-	groundLayer = map.createDynamicLayer('World', groundTiles);
+	var groundLayer = map.createDynamicLayer('World', groundTiles);
 
-	groundLayer.setCollisionByExclusion([-1]);
+	 groundLayer.setCollisionByExclusion([-1]);
 
-	gingerTile = map.addTilesetImage('can');
+	var gingerTile = map.addTilesetImage('can');
 	
-	gingerAleLayer = map.createDynamicLayer('Ginger Ale', gingerTile);
+	var gingerAleLayer = map.createDynamicLayer('Ginger Ale', gingerTile);
 
 	gingerAleLayer.setTileIndexCallback(99, getGingerAle, this);
 	//create player 
-	player = this.physics.add.sprite(200, 200, 'player');
+	var player = this.physics.add.sprite(200, 200, 'player');
 
 	player.setBounce(0.2);
 	//cant leave the map
@@ -193,12 +193,12 @@ MainGame.create= function() {
     // fix the text to the camera
     text.setScrollFactor(0);
 	
-}
+},
 
 
 	
 
-MainGame.update = function(time, delta) {
+update: function(time, delta) {
 	if (cursors.left.isDown)
 	{
 		player.body.setVelocityX(-200);
@@ -215,16 +215,15 @@ MainGame.update = function(time, delta) {
 	if(cursors.up.isDown){
 		player.body.setVelocityY(-500)
 	}
-}
+},
 
-MainGame.getGingerAle=function(sprite, tile) {
+getGingerAle: function(sprite, tile) {
 	gingerAleLayer.removeTileAt(tile.x, tile.y);
 	score++;
 	text.setText(score);
 	return false
-}
-
-var game = new Phaser.Game(config);
+},
+});
 
 
 

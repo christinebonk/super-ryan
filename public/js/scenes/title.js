@@ -1,16 +1,18 @@
-var startScene = new Phaser.Scene('start');
 
 var bg;
 //loads images//
-startScene.preload= function(){
+
+let StartStage ={
+
+preload: function(){
     this.load.image('bg','./assets/images/pixelCity.png');
     this.load.spritesheet('sk8','./assets/images/sk8.png', {frameWidth: 361.8, frameHeight: 362,endFrame:135});
     this.load.image('Title','./assets/images/SuperRyan.png');
     this.load.image('startbtn','./assets/images/Start.png');
-}
+},
 
 //creation central//
-startScene.create= function(){
+create: function(){
      bg = this.add.tileSprite(400,300,800,600,'bg');
     title= this.add.image(400,-100,'Title');
 //start button//
@@ -78,10 +80,10 @@ var config = {
  
     
     
-}
+},
 
 
-startScene.update= function(){
+update: function(){
 
 var Tile= bg.tilePositionX+=2;
 
@@ -89,11 +91,11 @@ var Tile= bg.tilePositionX+=2;
     
 
    
-};
+},
 //end of start screen//
 
 
-
+}
 
 
 
@@ -118,6 +120,11 @@ var config = {
                 },
             }
   };
+
+
+  StartGame: function(player,Game){
+      game.state.start('Game');
+  }
   
   var game = new Phaser.Game(config);
 
