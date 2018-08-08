@@ -1,7 +1,7 @@
 // Set up MySQL connection.
 var mysql = require("mysql2");
 var Sequelize = require("sequelize");
-var sequelize = new Sequelize("super_ryan", "root", "password", {
+var sequelize = new Sequelize("DATABASE_URL", "root", "password", {
   host: "localhost",
   port: 3306,
   dialect: "mysql",
