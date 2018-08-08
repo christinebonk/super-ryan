@@ -9,7 +9,9 @@
     "express-handlebars": "^3.0.0",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.1",
-    "sequelize": "^4.38.0"
+    "pg": "^7.4.3",
+    "sequelize": "^4.38.0",
+    "sequelize-heroku": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {
