@@ -8,12 +8,18 @@ startScene.preload= function(){
     this.load.image('Title','./assets/images/SuperRyan.png');
     this.load.image('startbtn','./assets/images/button.png');
     this.load.image('hsbtn','./assets/images/highscore.png');
+    this.load.audio('skate', '../assets/skate.mp3');
 }
+
+//music
+var music;
 
 //creation central//
 startScene.create= function(){
      bg = this.add.tileSprite(400,300,800,600,'bg');
     title= this.add.image(400,-100,'Title');
+    music = this.sound.add('skate');
+    music.play();
 
 
 //start button//
@@ -21,6 +27,10 @@ startbtn = this.add.sprite(400,300,'startbtn').setInteractive();
 startbtn.on('pointerdown', function() {window.location.href = "/create"});
 hsbtn = this.add.sprite(400,370,'hsbtn').setInteractive();
 hsbtn.on('pointerdown', function() {window.location.href = "/highscore"});
+
+
+
+
 
 
 startbtn.alpha = 0;
