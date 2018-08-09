@@ -5,7 +5,7 @@ var bg;
 startScene.preload= function(){
     this.load.image('bg','./assets/images/pixelCity.png');
     this.load.spritesheet('sk8','./assets/images/sk8.png', {frameWidth: 361.8, frameHeight: 362,endFrame:135});
-    this.load.image('Title','./assets/images/SuperRyan.png');
+    this.load.image('Title','./assets/images/candyquest.png');
     this.load.image('startbtn','./assets/images/button.png');
     this.load.image('hsbtn','./assets/images/highscore.png');
     this.load.audio('skate', '../assets/skate.mp3');
@@ -127,7 +127,7 @@ var config = {
     width: 800,
     height: 600,
     scene: [startScene],
-    version: '1.0a',
+    version: '1.0b:Ryan is lame and didnt like Super Ryan',
     physics: {
             default: 'arcade',
             arcade: {
