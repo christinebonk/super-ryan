@@ -1,6 +1,6 @@
 # super-ryan
 
-##Project Description
+## Project Description
 
  This 2D scrolling game challenges users to clean-up candyland before time runs out. Created using Phaser 3, MySql database and Node js, players can choose from four awesome characters, create user profiles and try to make the high score board!
 
